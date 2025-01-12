@@ -5,7 +5,7 @@ export class UserAccountsPage {
   constructor(page) {
     // Locators
     this.page = page;
-    this.buttonCreateUserAccount = page.getByRole("button", {name: "Create user account",})
+    this.buttonCreateUserAccount = page.getByRole("button", {name: "Create user account"})
     this.dialogCreateNewUserAccount =page.locator("#dialog-content")
     this.dialogTextBoxFirstName =this.dialogCreateNewUserAccount.getByTestId("um-first-name").locator(".qds-input")
     this.dialogTextBoxLastName = this.dialogCreateNewUserAccount.getByTestId("um-last-name").locator(".qds-input")
@@ -39,7 +39,7 @@ export class UserAccountsPage {
     await this.helpers.customFillInputField(this.dialogTextBoxLastName,stringLastName)
   };
 
-  populateNewUserRole = async( stringRole) => {
+  selectNewUserRole = async( stringRole) => {
     await this.dialogDropDownRole.waitFor()
     await this.dialogDropDownRole.click()
     await this.dialogDropDownRoleInput.fill(stringRole)
@@ -62,5 +62,22 @@ export class UserAccountsPage {
   clickButtonSave = async () => {
     await this.buttonSave.waitFor()
     await this.buttonSave.click()
+  }
+
+  verifyAccountExists = async(stringAccountName, booolShouldExists,timeout) => {
+      const account=  this.page.locator(`.qds-title:has-text("${stringAccountName}")`)
+      await this.helpers.verifyExists(account,booolShouldExists,timeout)
+      
+  }
+
+  addNewUserAccount = async(stringFirstName,stringLastName,stringRole,stringUserName,stringUserPassword,stringConfirmUserPassword,stringAccountName,booolShouldExists,timeout) =>{
+    await this.populateNewUserFirstName(stringFirstName)
+    await this.populateNewUserLastName(stringLastName)
+    await this.selectNewUserRole(stringRole)
+    await this.populateNewUserName(stringUserName)
+    await this.populateNewUserPassword(stringUserPassword)
+    await this.populateConfirmNewUserPassword(stringConfirmUserPassword)
+    await this.clickButtonSave()
+    await this.verifyAccountExists(stringAccountName,booolShouldExists,timeout)
   }
 }
