@@ -3,7 +3,10 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-  "scripts": {},
+  "scripts": {
+  "setup": "npm ci && npm run install-playwright",
+  "install-playwright": "npx playwright install && npx playwright install-deps"
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",
