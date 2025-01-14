@@ -5,6 +5,4 @@ export const authData = {
   password_admin: "User123456",
 };
 
-export const globalVars = {
-  mafAddress: "https://onprem:6201/eamportal",
-};
+

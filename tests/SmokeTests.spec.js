@@ -1,6 +1,5 @@
 import { test, expect } from "@playwright/test";
 import { LoginPage } from "../PAGE_OBJECTS/LoginPage";
-import { globalVars } from "../DATA/Variables";
 import { authData } from "../DATA/Variables";
 import { SolutionsPage } from "../PAGE_OBJECTS/SolutionsPage";
 import { SideBarPage } from "../PAGE_OBJECTS/SideBarPage";
@@ -38,7 +37,7 @@ test.describe("Smoke test",() => {
 
   test("TC_1-Create different accounts and login to portal as different users", async ({page,}) => {
 
-    await loginPage.visit(globalVars.mafAddress);
+    await loginPage.visit(process.env.MAF_URL);
     await loginPage.login(authData.username_admin, authData.password_admin);
     await solutionPage.waitToLoadSolutionPage();
     await sidebarPage.clickSideBarButton("User Management");
@@ -49,7 +48,7 @@ test.describe("Smoke test",() => {
   })
 
   test("TC_2-create new solution Smoke", async({page})=> {
-    await loginPage.visit(globalVars.mafAddress);
+    await loginPage.visit(process.env.MAF_URL);
     await loginPage.login(radnomUserAccountName, authData.password);
     await solutionPage.waitToLoadSolutionPage();
     await sidebarPage.clickSideBarButton("Solutions");
@@ -61,7 +60,7 @@ test.describe("Smoke test",() => {
   })
 
   test("TC_3-Delete Solution Smoke", async({page})=> {
-    await loginPage.visit(globalVars.mafAddress);
+    await loginPage.visit(process.env.MAF_URL);
     await loginPage.login(radnomUserAccountName, authData.password);
     await solutionPage.waitToLoadSolutionPage();
     await sidebarPage.clickSideBarButton("Solutions");
