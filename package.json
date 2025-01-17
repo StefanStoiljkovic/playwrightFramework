@@ -4,8 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-  "setup": "npm ci && npm run install-playwright",
-  "install-playwright": "npx playwright install && npx playwright install-deps"
+    "setup": "npm ci && npm run install-playwright",
+    "install-playwright": "npx playwright install && npx playwright install-deps",
+    "test" : "set Test_Name=%1 && npx playwright test -g \"%Test_Name%\""
   },
   "keywords": [],
   "author": "",
@@ -13,6 +14,7 @@
   "devDependencies": {
     "@playwright/test": "^1.49.1",
     "@types/node": "^22.10.5",
-    "allure-playwright": "^3.0.8"
+    "allure-playwright": "^3.0.8",
+    "cross-env": "^7.0.3"
   }
 }

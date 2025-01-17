@@ -1,18 +1,18 @@
 class MyCustomReporter {
     onBegin(config, suite) {
-        console.log(`Počinjemo testove: ${suite.title}`);
+        console.log(`Tests starts: ${suite.title}`);
     }
 
     onTestBegin(test) {
-        console.log(`Počinje test: ${test.title}`);
+        console.log(`Test start: ${test.title}`);
     }
 
     onTestEnd(test, result) {
-        console.log(`Test završen: ${test.title} sa statusom: ${result.status}`);
+        console.log(`Test finished: ${test.title} with status: ${result.status}`);
     }
 
     onEnd(result) {
-        console.log(`Svi testovi su završeni sa statusom: ${result.status}`);
+        console.log(`ALL TESTS FINISHED WITH STATUS: ${result.status}`);
     }
 }
 
